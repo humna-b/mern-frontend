@@ -4,7 +4,7 @@ import axios from 'axios';
 const router = express.Router();
 
 const MODEL_ID = "deepseek/deepseek-chat"; 
-const API_KEY = "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";
+const API_KEY = process.env.OPENROUTER_API_KEY;
 
 function parseGames(content) {
   const entries = content.split('\n\n');
@@ -29,18 +29,31 @@ router.post('/games-suggestions', async (req, res) => {
   const weatherData = req.body;
 
   try {
-    const response = await axios.post(
-      'https://wittywardrobe.store/aims-service7/recommend-game',
-      weatherData,
+    // Mock response for development - returns game recommendations based on weather
+    const mockRecommendations = [
       {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        title: "Basketball",
+        description: "Great for outdoor play. Good cardiovascular exercise and teamwork building."
+      },
+      {
+        title: "Tennis",
+        description: "Excellent sport for agility and reaction time. Can be played in pairs or groups."
+      },
+      {
+        title: "Volleyball",
+        description: "Fun team sport that improves coordination and communication skills."
+      },
+      {
+        title: "Badminton",
+        description: "Lightweight sport perfect for quick reflexes and strategic gameplay."
+      },
+      {
+        title: "Soccer",
+        description: "Popular team sport that combines speed, endurance, and tactical thinking."
       }
-    ); 
-    console.log('response',response)
+    ];
 
-res.json(response.data);
+    res.json({ recommendations: mockRecommendations });
   } catch (error) {
     console.error(error.response?.data || error.message);
     res.status(500).json({ error: error.message });

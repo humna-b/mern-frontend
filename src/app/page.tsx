@@ -90,8 +90,31 @@ function Home() {
   const { isSignedIn, user } = useUser()
   const [showSignOutModal, setShowSignOutModal] = useState(false)
   const [isSigningOut, setIsSigningOut] = useState(false)
+  const [rainAnimations, setRainAnimations] = useState<Array<{left: string, top: string, height: string, delay: string, duration: string}>>([])
+  const [cloudAnimations, setCloudAnimations] = useState<Array<{left: string, top: string, width: string, height: string, delay: string, duration: string}>>([])
 
   useEffect(() => {
+    // Generate random rain animations (20 particles)
+    const rainValues = Array.from({ length: 20 }).map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `-${Math.random() * 10}%`,
+      height: `${Math.random() * 20 + 15}px`,
+      delay: `${Math.random() * 2}s`,
+      duration: `${Math.random() * 1 + 1}s`,
+    }))
+    setRainAnimations(rainValues)
+
+    // Generate random cloud animations (5 particles)
+    const cloudValues = Array.from({ length: 5 }).map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 50}%`,
+      width: `${Math.random() * 100 + 50}px`,
+      height: `${Math.random() * 60 + 30}px`,
+      delay: `${Math.random() * 5}s`,
+      duration: `${Math.random() * 10 + 15}s`,
+    }))
+    setCloudAnimations(cloudValues)
+
     setMounted(true)
     // Add the global styles to the document
     const styleElement = document.createElement("style")
@@ -514,16 +537,16 @@ function Home() {
 
                 {/* Rain Animation */}
                 <div className="absolute inset-0 opacity-70">
-                  {Array.from({ length: 20 }).map((_, i) => (
+                  {rainAnimations.map((anim, i) => (
                     <div
                       key={i}
                       className="absolute w-0.5 bg-blue-300/30 rounded-full animate-rain"
                       style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `-${Math.random() * 10}%`,
-                        height: `${Math.random() * 20 + 15}px`,
-                        animationDelay: `${Math.random() * 2}s`,
-                        animationDuration: `${Math.random() * 1 + 1}s`,
+                        left: anim.left,
+                        top: anim.top,
+                        height: anim.height,
+                        animationDelay: anim.delay,
+                        animationDuration: anim.duration,
                       }}
                     ></div>
                   ))}
@@ -578,17 +601,17 @@ function Home() {
 
                 {/* Cloud Animation */}
                 <div className="absolute inset-0">
-                  {Array.from({ length: 5 }).map((_, i) => (
+                  {cloudAnimations.map((anim, i) => (
                     <div
                       key={i}
                       className="absolute bg-white/10 rounded-full blur-md animate-float"
                       style={{
-                        left: `${Math.random() * 100}%`,
-                        top: `${Math.random() * 50}%`,
-                        width: `${Math.random() * 100 + 50}px`,
-                        height: `${Math.random() * 60 + 30}px`,
-                        animationDelay: `${Math.random() * 5}s`,
-                        animationDuration: `${Math.random() * 10 + 15}s`,
+                        left: anim.left,
+                        top: anim.top,
+                        width: anim.width,
+                        height: anim.height,
+                        animationDelay: anim.delay,
+                        animationDuration: anim.duration,
                       }}
                     ></div>
                   ))}

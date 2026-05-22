@@ -43,6 +43,11 @@ app.use('/api', deepseek);
 app.use('/api', session);
 app.use('/api', clerkWebhook);
 
-// ❌ Don't call app.listen()
+// Local development server
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
 // ✅ Export the handler for Vercel
 export default app;

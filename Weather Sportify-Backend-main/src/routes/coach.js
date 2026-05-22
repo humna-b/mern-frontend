@@ -9,6 +9,8 @@ const clerk = Clerk({ secretKey: process.env.CLERK_SECRET_KEY });
 
 router.post('/register-coach', async (req, res) => {
   try {
+    console.log('🔔 Register Coach Request Received:', req.body);
+    
     const {
       userId,
       yearsOfExperience,
@@ -20,18 +22,22 @@ router.post('/register-coach', async (req, res) => {
     } = req.body;
 
     if (!userId) {
+      console.log('❌ userId is missing');
       return res.status(400).json({ message: 'userId is required' });
     }
 
     let user;
     try {
       user = await clerk.users.getUser(userId);
+      console.log('✅ User found in Clerk:', user.id);
     } catch (err) {
+      console.log('❌ User not found in Clerk:', userId);
       return res.status(404).json({ message: 'No account found for the provided userId' });
     }
 
     const existingCoach = await RegisterCoach.findOne({ userId });
     if (existingCoach) {
+      console.log('⚠️  Coach already registered:', userId);
       return res.status(400).json({ message: 'Coach already registered for this user' });
     }
 
@@ -46,6 +52,7 @@ router.post('/register-coach', async (req, res) => {
     });
 
     await coach.save();
+    console.log('✅ Coach saved to database:', coach._id);
 
     await clerk.users.updateUserMetadata(userId, {
       publicMetadata: {
@@ -59,8 +66,10 @@ router.post('/register-coach', async (req, res) => {
           languages
         }
       }
-    }); 
-      await User.findOneAndUpdate(
+    });
+    console.log('✅ Clerk metadata updated');
+    
+    await User.findOneAndUpdate(
       { clerkId: userId },
       {
         $set: {
@@ -70,15 +79,17 @@ router.post('/register-coach', async (req, res) => {
           invitedSessionsAsCoach: [],
         }
       },
-      { upsert: false, new: true }
+      { upsert: true, new: true }
     );
+    console.log('✅ User database updated');
 
 
     return res.status(201).json({ message: 'Coach registered successfully', coach });
 
   } catch (error) {
-    console.error('Register Coach Error:', error);
-    return res.status(500).json({ message: 'Internal Server Error' });
+    console.error('❌ Register Coach Error:', error.message);
+    console.error('Error details:', error);
+    return res.status(500).json({ message: 'Internal Server Error', error: error.message });
   }
 }); 
 router.get('/coaches', async (req, res) => {

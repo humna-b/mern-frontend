@@ -93,12 +93,35 @@ export default function RegisterCoach() {
       return
     }
 
-    if (!yearsOfExperience || !preferredSessionDuration || !bio) {
-      toast.error("Please fill in all required fields")
+    // Validation: years of experience must be greater than 0
+    if (yearsOfExperience <= 0) {
+      toast.error("Years of experience must be greater than 0")
+      return
+    }
+
+    if (!preferredSessionDuration || preferredSessionDuration.trim() === "") {
+      toast.error("Please select a preferred session duration")
+      return
+    }
+
+    if (!bio || bio.trim() === "") {
+      toast.error("Please write a bio")
       return
     }
 
     setIsLoading(true)
+
+    const payload = {
+      userId: user.id,
+      yearsOfExperience: parseInt(yearsOfExperience.toString(), 10),
+      certification: certifications,
+      specialities,
+      preferredSessionDuration,
+      bio: bio.trim(),
+      languages,
+    }
+    
+    console.log("📤 Submitting coach registration:", payload)
 
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_WEATHER_URL}/api/register-coach`, {
@@ -106,30 +129,29 @@ export default function RegisterCoach() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          userId: user.id,
-          yearsOfExperience,
-          certification: certifications,
-          specialities,
-          preferredSessionDuration,
-          bio,
-          languages,
-        }),
+        body: JSON.stringify(payload),
       })
 
+      console.log("📥 Response status:", response.status)
       const data = await response.json()
+      console.log("📥 Response data:", data)
 
-      if (response.status === 201) {
-        toast.success(data.message || "Successfully registered as a coach!")
-        resetForm() 
-        window.location.reload();
-        router.push(`/dashboard/coach-dashboard?coachId=${user.id}`)
+      if (response.status === 201 || response.status === 400) {
+        if (response.status === 400 && data.message?.includes("already registered")) {
+          toast.info("Coach profile already exists. Redirecting...")
+        } else {
+          toast.success(data.message || "Successfully registered as a coach!")
+        }
+        resetForm()
+        setTimeout(() => {
+          window.location.href = `/dashboard/coach-dashboard`
+        }, 1000)
       } else {
         toast.error(data.message || "Failed to register as a coach")
       }
     } catch (error) {
-      toast.error("An error occurred while registering")
-      console.error(error)
+      console.error("❌ Registration error:", error)
+      toast.error("An error occurred while registering: " + (error instanceof Error ? error.message : "Unknown error"))
     } finally {
       setIsLoading(false)
     }
@@ -145,25 +167,17 @@ export default function RegisterCoach() {
       </motion.div>
 
       {isAlreadyCoach ? (
-        <motion.div variants={itemVariants}>
-          <Card className="backdrop-blur-lg bg-white/10 border-0 p-8 text-center">
-            <AlertCircle className="h-12 w-12 text-yellow-400 mx-auto mb-4" />
-            <h2 className="text-2xl font-semibold text-white mb-3">You're Already a Coach!</h2>
-            <p className="text-gray-300 mb-6">
-              You have already registered as a coach. You can access your coach portal to manage your sessions and
-              profile.
+        <motion.div variants={itemVariants} className="mb-8">
+          <Card className="backdrop-blur-lg bg-white/10 border-0 p-4 flex items-center gap-3">
+            <AlertCircle className="h-5 w-5 text-yellow-400 flex-shrink-0" />
+            <p className="text-sm text-yellow-300">
+              Your coach status is already active. You can update your profile details below.
             </p>
-            <Button
-              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8"
-              onClick={() => router.push(`/dashboard/coach-dashboard?coachId=${user?.id}`)}
-            >
-              Go to Coach Portal
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
           </Card>
         </motion.div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-6">
+      ) : null}
+
+      <form onSubmit={handleSubmit} className="space-y-6">
           {/* Expertise Level */}
           <motion.div variants={itemVariants}>
             <Card className="backdrop-blur-lg bg-white/10 border-0 p-6">
@@ -396,7 +410,6 @@ export default function RegisterCoach() {
             </Button>
           </motion.div>
         </form>
-      )}
     </motion.div>
   )
 }
