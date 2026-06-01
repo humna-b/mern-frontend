@@ -269,8 +269,8 @@ export default function BookingModal({ isOpen, onClose, coach }: BookingModalPro
                 alt={`${coach.firstName} ${coach.lastName}`}
               />
               <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white font-semibold">
-                {coach.firstName[0]}
-                {coach.lastName[0]}
+                {coach.firstName?.[0]}
+                {coach.lastName?.[0]}
               </AvatarFallback>
             </Avatar>
             <div>
@@ -490,8 +490,8 @@ export default function BookingModal({ isOpen, onClose, coach }: BookingModalPro
                           alt={`${friend.firstName} ${friend.lastName}`}
                         />
                         <AvatarFallback className="bg-gradient-to-br from-slate-600 to-slate-700 text-white text-xs">
-                          {friend.firstName[0]}
-                          {friend.lastName[0]}
+                          {friend.firstName?.[0]}
+                          {friend.lastName?.[0]}
                         </AvatarFallback>
                       </Avatar>
                       <Label htmlFor={`friend-${friend.clerkId}`} className="cursor-pointer text-slate-200 font-medium">
