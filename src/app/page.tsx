@@ -148,7 +148,7 @@ function Home() {
           <div className="flex items-center gap-2">
             <Cloud className="h-6 w-6 text-purple-400" />
             <h1 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">
-              Weather Sportify
+              Play cast
             </h1>
           </div>
 
@@ -237,7 +237,7 @@ function Home() {
                 <div className="flex items-center gap-2 py-4 border-b border-gray-800">
                   <Cloud className="h-6 w-6 text-purple-400" />
                   <h2 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">
-                    Weather Sportify
+                   Play cast
                   </h2>
                 </div>
                 <nav className="flex flex-col gap-1 py-6">
@@ -322,7 +322,7 @@ function Home() {
               Play the Perfect Game for Every Weather
             </h1>
             <p className="text-lg md:text-xl text-white max-w-3xl mb-8">
-              Weather Sportify uses advanced AI to recommend the perfect games based on your local weather conditions.
+             Play cast uses advanced AI to recommend the perfect games based on your local weather conditions.
               Enhance your gaming experience with personalized suggestions that match your mood and environment.
             </p>
             <div className="flex flex-row gap-4">
@@ -365,7 +365,7 @@ function Home() {
               <Badge className="mb-4 bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 border-blue-500/30">
                 Powerful Features
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Why Choose Weather Sportify?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Why Choose PLay cast ?</h2>
               <p className="text-white max-w-2xl mx-auto">
                 Our innovative platform combines weather data with gaming preferences to create the ultimate gaming
                 experience.
@@ -458,7 +458,7 @@ function Home() {
               <Badge className="mb-4 bg-purple-500/20 text-purple-300 hover:bg-purple-500/30 border-purple-500/30">
                 Simple Process
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">How Weather Sportify Works</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">How Play cast  Works</h2>
               <p className="text-white max-w-2xl mx-auto">
                 Our platform makes it easy to find the perfect game for any weather condition in just a few simple
                 steps.
@@ -523,7 +523,7 @@ function Home() {
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Perfect Games for Every Weather</h2>
               <p className="text-white max-w-2xl mx-auto">
-                Different weather conditions create different gaming moods. Discover how Weather Sportify enhances your
+                Different weather conditions create different gaming moods. Discover how PLay cast  enhances your
                 experience.
               </p>
             </div>
@@ -690,7 +690,7 @@ function Home() {
                   role: "Casual Gamer",
                   image: "/placeholder.svg?height=100&width=100",
                   quote:
-                    "Weather Sportify completely changed how I choose games. Now I look forward to rainy days for the perfect atmospheric adventure!",
+                    "Play cast completely changed how I choose games. Now I look forward to rainy days for the perfect atmospheric adventure!",
                 },
                 {
                   name: "Sarah Chen",
@@ -797,7 +797,7 @@ function Home() {
                 </Badge>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Get in Touch</h2>
                 <p className="text-white mb-6">
-                  Have questions about Weather Sportify? Our team is here to help you get started.
+                  Have questions about PLay cast ? Our team is here to help you get started.
                 </p>
 
                 <div className="space-y-4 mb-8">
@@ -980,11 +980,11 @@ function Home() {
               <div className="flex items-center gap-2 mb-4">
                 <Cloud className="h-6 w-6 text-purple-400" />
                 <h2 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">
-                  Weather Sportify
+                  PLay cast 
                 </h2>
               </div>
               <p className="text-white mb-6 max-w-md">
-                Weather Sportify is the revolutionary platform that connects your gaming experience with real-time
+                PLay cast is the revolutionary platform that connects your gaming experience with real-time
                 weather conditions, providing personalized game recommendations that match your mood and environment.
               </p>
               <div className="flex gap-4">
@@ -1068,7 +1068,7 @@ function Home() {
           </div>
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} Weather Sportify. All rights reserved.</p>
+            <p className="text-gray-400 text-sm">© {new Date().getFullYear()} PLay cast . All rights reserved.</p>
             <div className="flex gap-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-gray-300 text-sm">
                 Terms
