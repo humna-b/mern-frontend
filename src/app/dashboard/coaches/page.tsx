@@ -340,7 +340,7 @@ export default function CoachesPage() {
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold text-white">{`${coach.firstName} ${coach.lastName}`}</h3>
-                        <p className="text-blue-300">{coach.coachDetails.specialities[0] || "Coach"}</p>
+                        <p className="text-blue-300">{coach.coachDetails?.specialities?.[0] || "Coach"}</p>
                       </div>
                     </div>
 
@@ -351,7 +351,7 @@ export default function CoachesPage() {
                         <span>Languages</span>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {coach.coachDetails.languages.map((language, idx) => (
+                        {coach.coachDetails?.languages.map((language, idx) => (
                           <Badge
                             key={idx}
                             variant="outline"
@@ -370,7 +370,7 @@ export default function CoachesPage() {
                         <span>Specialities</span>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {coach.coachDetails.specialities.map((specialty, idx) => (
+                        {coach.coachDetails?.specialities.map((specialty, idx) => (
                           <Badge
                             key={idx}
                             variant="outline"
@@ -385,11 +385,11 @@ export default function CoachesPage() {
                     <div className="space-y-3 mb-6">
                       <div className="flex items-center text-gray-300">
                         <Clock className="w-5 h-5 mr-2 text-blue-400" />
-                        <span>{coach.coachDetails.preferredSessionDuration}</span>
+                        <span>{coach.coachDetails?.preferredSessionDuration}</span>
                       </div>
                       <div className="flex items-center text-gray-300">
                         <Award className="w-5 h-5 mr-2 text-amber-400" />
-                        <span>{coach.coachDetails.yearsOfExperience} years experience</span>
+                        <span>{coach.coachDetails?.yearsOfExperience} years experience</span>
                       </div>
                     </div>
 
