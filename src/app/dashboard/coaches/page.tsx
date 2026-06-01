@@ -351,7 +351,7 @@ export default function CoachesPage() {
                         <span>Languages</span>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {coach.coachDetails?.languages.map((language, idx) => (
+                        {coach.coachDetails?.languages?.map((language, idx) => (
                           <Badge
                             key={idx}
                             variant="outline"
@@ -370,7 +370,7 @@ export default function CoachesPage() {
                         <span>Specialities</span>
                       </div>
                       <div className="flex flex-wrap gap-2">
-                        {coach.coachDetails?.specialities.map((specialty, idx) => (
+                        {coach.coachDetails?.specialities?.map((specialty, idx) => (
                           <Badge
                             key={idx}
                             variant="outline"

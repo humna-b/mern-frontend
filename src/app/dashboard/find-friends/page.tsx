@@ -312,10 +312,10 @@ export default function FindFriends() {
 
   const filteredSuggestions = friendSuggestions.filter(
     (friend) =>
-      friend.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      friend.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      friend.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      friend.bio.toLowerCase().includes(searchTerm.toLowerCase()),
+      friend.firstName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      friend.lastName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      friend.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      friend.bio?.toLowerCase().includes(searchTerm.toLowerCase()),
   )
 
   // Determine what to show: search results or friend suggestions
