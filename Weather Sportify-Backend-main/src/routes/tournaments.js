@@ -184,7 +184,7 @@ for (const invitedUser of invitedUsers) {
     <p>Click below to view and manage your tournaments:</p>
     <a href="https://your-domain.com/dashboard/event-management" target="_blank" style="background-color:#007bff;color:#fff;padding:10px 15px;text-decoration:none;border-radius:5px;">View Invitations</a>
     <br/><br/>
-    <p>Best regards,<br/>Weather Sportify Team</p>
+    <p>Best regards,<br/>PLay cast  Team</p>
   `;
 
   await sendEmail(invitedUser.email, `You're invited to ${tournamentName}!`, emailHTML);
@@ -313,7 +313,7 @@ for (const invitedUser of invitedUsers) {
     <p>Click below to view and manage your tournaments:</p>
     <a href="https://your-domain.com/dashboard/event-management" target="_blank" style="background-color:#007bff;color:#fff;padding:10px 15px;text-decoration:none;border-radius:5px;">View Invitations</a>
     <br/><br/>
-    <p>Best regards,<br/>Weather Sportify Team</p>
+    <p>Best regards,<br/>PLay cast  Team</p>
   `;
 
   await sendEmail(invitedUser.email, `You're invited to ${tournamentName}!`, emailHTML);
