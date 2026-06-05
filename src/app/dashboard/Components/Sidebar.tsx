@@ -44,7 +44,7 @@ export function Sidebar() {
       tooltip: isCoach ? "You are already registered as a coach" : null, 
 
      },
-    // { icon: HeartPulse, label: "Health Record", href: "/dashboard/health-record" },
+    { icon: HeartPulse, label: "Health Record", href: "/dashboard/health-record" },
     { icon: UserCircle, label: "User Profile", href: "/dashboard/user-profile" }, 
     { icon: UserCircle, label: "Find Friends?", href: "/dashboard/find-friends" },
 
